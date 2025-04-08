@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <div class="container-wrapper"> <!-- ENVOLVENDO OS DOIS BLOCO -->
         <div class="container">
             <h1>Cadastro de Produtos</h1>
             <form id="productForm">
@@ -37,16 +38,15 @@
                 <label for="data_validade">Data de Validade:</label>
                 <input type="date" id="data_validade" name="data_validade" required><br>
 
-                <button type="submit">Cadastrar Produto</button>
+                <button type="submit" id="submitButton">Cadastrar Produto</button>
             </form>
 
             <p id="message"></p>
         </div>
 
         <div class="container2">
-            <!-- tabela para mostrar o estoque -->
             <h2>Lista de Produtos</h2>
-            <table id="tabela-produtos" border="1">
+            <table id="tabela-produtos">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -54,15 +54,15 @@
                         <th>Unidade</th>
                         <th>Quantidade</th>
                         <th>Data de Validade</th>
-                        <th>Ações</th> <!-- Nova coluna para botões -->
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Os produtos serão inseridos aqui pelo JavaScript -->
                 </tbody>
             </table>
-            <!-- tabela para mostrar o estoque -->
         </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
