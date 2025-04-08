@@ -9,7 +9,52 @@
 </head>
 
 <body>
-    <div class="container-wrapper"> <!-- ENVOLVENDO OS DOIS BLOCO -->
+
+    <!-- Botão do menu hambúrguer -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+    <!-- Menu lateral com filtros -->
+    <div class="menu-lateral" id="menuLateral">
+        <h3>🔎 Buscar Produtos</h3>
+
+        <input type="text" id="filtroNome" placeholder="Nome do produto">
+
+        <select id="filtroCategoria">
+            <option value="">Todas as categorias</option>
+            <option value="perecivel">Perecível</option>
+            <option value="nao_perecivel">Não Perecível</option>
+        </select>
+
+        <select id="filtroUnidade">
+            <option value="">Todas as unidades</option>
+            <option value="unidade">Unidade</option>
+            <option value="kg">Kg</option>
+            <option value="ml">Ml</option>
+            <option value="lata">Lata</option>
+            <option value="caixa">Caixa</option>
+        </select>
+
+        <label>Quantidade mínima:
+            <input type="number" id="filtroQtdMin" min="0">
+        </label>
+
+        <label>Quantidade máxima:
+            <input type="number" id="filtroQtdMax" min="0">
+        </label>
+
+        <label>Validade a partir de:
+            <input type="date" id="filtroValidadeMin">
+        </label>
+
+        <label>Validade até:
+            <input type="date" id="filtroValidadeMax">
+        </label>
+
+        <button onclick="aplicarFiltros()">🔍 Filtrar</button>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="container-wrapper">
         <div class="container">
             <h1>Cadastro de Produtos</h1>
             <form id="productForm">

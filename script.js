@@ -33,7 +33,7 @@ document.getElementById('productForm').addEventListener('submit', async function
 
     // Captura os valores do formulário
     const id = this.getAttribute('data-editing-id'); // Pega o ID se estiver editando
-    const nome = document.getElementById('nome').value;
+    const nome = formatarNomeProduto(document.getElementById('nome').value);
     const categoria = document.getElementById('categoria').value;
     const unidade = document.getElementById('unidade').value;
     const quantidade = document.getElementById('quantidade').value;
@@ -96,9 +96,11 @@ async function carregarProdutos() {
         }
         const produtos = await response.json();
 
-        // Seleciona o corpo da tabela
+        // Ordena por nome (ordem alfabética)
+        produtos.sort((a, b) => a.nome.localeCompare(b.nome));
+
         const tabela = document.querySelector("#tabela-produtos tbody");
-        tabela.innerHTML = ""; // Limpa a tabela antes de adicionar os produtos
+        tabela.innerHTML = ""; // Limpa a tabela
 
         produtos.forEach(produto => {
             const linha = document.createElement("tr");
@@ -120,6 +122,61 @@ async function carregarProdutos() {
         console.error("Erro ao carregar produtos:", error);
     }
 }
+
+function aplicarFiltros() {
+    const nomeFiltro = document.getElementById('filtroNome').value.trim().toLowerCase();
+    const categoriaFiltro = document.getElementById('filtroCategoria').value;
+    const unidadeFiltro = document.getElementById('filtroUnidade').value;
+    const qtdMin = parseFloat(document.getElementById('filtroQtdMin').value);
+    const qtdMax = parseFloat(document.getElementById('filtroQtdMax').value);
+    const validadeMin = document.getElementById('filtroValidadeMin').value;
+    const validadeMax = document.getElementById('filtroValidadeMax').value;
+
+    fetch('http://127.0.0.1:8000/api/produtos/')
+        .then(res => res.json())
+        .then(produtos => {
+            // Ordena os produtos alfabeticamente por nome
+            produtos.sort((a, b) => a.nome.localeCompare(b.nome));
+
+            const filtrados = produtos.filter(produto => {
+                const nome = produto.nome.toLowerCase();
+                const categoria = produto.categoria;
+                const unidade = produto.unidade;
+                const quantidade = parseFloat(produto.quantidade);
+                const validade = produto.data_validade;
+
+                const nomeOk = nome.includes(nomeFiltro);
+                const categoriaOk = categoriaFiltro === "" || categoria === categoriaFiltro;
+                const unidadeOk = unidadeFiltro === "" || unidade === unidadeFiltro;
+                const qtdOk = (isNaN(qtdMin) || quantidade >= qtdMin) &&
+                              (isNaN(qtdMax) || quantidade <= qtdMax);
+                const validadeOk = (!validadeMin || validade >= validadeMin) &&
+                                   (!validadeMax || validade <= validadeMax);
+
+                return nomeOk && categoriaOk && unidadeOk && qtdOk && validadeOk;
+            });
+
+            const tabela = document.querySelector("#tabela-produtos tbody");
+            tabela.innerHTML = "";
+
+            filtrados.forEach(produto => {
+                const linha = document.createElement("tr");
+                linha.innerHTML = `
+                    <td>${produto.nome}</td>
+                    <td>${produto.categoria}</td>
+                    <td>${produto.unidade}</td>
+                    <td>${produto.quantidade}</td>
+                    <td>${produto.data_validade}</td>
+                    <td>
+                        <button onclick="editarProduto(${produto.id})">✏️ Editar</button>
+                        <button onclick="excluirProduto(${produto.id})">🗑️ Excluir</button>
+                    </td>
+                `;
+                tabela.appendChild(linha);
+            });
+        });
+}
+
 
 // Carregar produtos ao carregar a página
 document.addEventListener("DOMContentLoaded", carregarProdutos);
@@ -168,6 +225,21 @@ async function excluirProduto(id) {
         console.error("Erro ao excluir produto:", error);
     }
 }
+
+function formatarNomeProduto(nome) {
+    return nome
+        .trim()                              // Remove espaços no início/fim
+        .replace(/\s+/g, ' ')                // Substitui múltiplos espaços por 1
+        .toLowerCase()                       // Tudo minúsculo
+        .split(' ')                          // Separa as palavras
+        .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1)) // Capitaliza
+        .join(' ');                          // Junta de novo
+}
+
+function toggleMenu() {
+    document.getElementById("menuLateral").classList.toggle("ativo");
+}
+
     
 
 
