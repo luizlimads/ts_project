@@ -10,7 +10,7 @@
 
 <body>
 
-    <!-- Botão do menu hambúrguer -->
+    <!-- Botão do menu hamburguer -->
     <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
 
     <!-- Menu lateral com filtros -->
@@ -51,6 +51,13 @@
         </label>
 
         <button onclick="aplicarFiltros()">🔍 Filtrar</button>
+        <button onclick="limparFiltros()">🧹 Limpar Filtros</button>
+        <hr> <!-- Uma linha para separar -->
+        <h3>📄 Outras opções</h3>
+        <button onclick="irPara('paginas_menu_html/relatorios.html')">📊 Relatórios</button>
+        <button onclick="irPara('estoque_critico.html')">⚠️ Estoque Crítico</button>
+        <button onclick="irPara('produtos_vencidos.html')">⏰ Produtos Vencidos</button>
+        <button onclick="irPara('historico.html')">📝 Histórico</button>
     </div>
 
     <!-- Conteúdo principal -->
@@ -90,7 +97,7 @@
         </div>
 
         <div class="container2">
-            <h2>Lista de Produtos</h2>
+            <h2>Lista de Produtos Cadastrados</h2>
             <table id="tabela-produtos">
                 <thead>
                     <tr>
@@ -103,7 +110,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Os produtos serão inseridos aqui pelo JavaScript -->
+                    <!-- Os produtos serão inseridos aqui pelo JavaScript (script.js) -->
                 </tbody>
             </table>
         </div>

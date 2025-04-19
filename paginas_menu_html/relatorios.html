@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios - Tik Stock</title>
+    <link rel="stylesheet" href="../styles.css"> 
+</head>
+
+<body>
+
+    <!-- Botão do menu hambúrguer -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+    <!-- Menu lateral -->
+    <div class="menu-lateral" id="menuLateral">
+        <h3>📄 Menu</h3>
+
+        <button onclick="irPara('../index.html')">🏠 Cadastro de Produtos</button>
+        <button onclick="irPara('relatorios.html')">📊 Relatórios</button>
+        <button onclick="irPara('estoque_critico.html')">⚠️ Estoque Crítico</button>
+        <button onclick="irPara('produtos_vencidos.html')">⏰ Produtos Vencidos</button>
+        <button onclick="irPara('historico.html')">📝 Histórico</button>
+    </div>
+
+    <div class="relatorios-wrapper">
+
+        <!-- Texto principal -->
+        <div class="relatorio-texto">
+            <h1>📊 Relatórios</h1>
+            <p>Bem-vindo à área de Relatórios do Tik Stock!</p>
+    
+            <h2>📋 Relatório Geral</h2>
+            <ul id="relatorio-textual">
+                <!-- Texto dos relatórios (via JavaScript) -->
+            </ul>
+        </div>
+    
+        <!-- Área dos gráficos -->
+        <div id="graficos-container">
+            <canvas id="graficoCategoria"></canvas>
+            <canvas id="graficoUnidades"></canvas>
+            <canvas id="graficoValidade"></canvas>
+            <canvas id="grafico4"></canvas>
+            <canvas id="grafico5"></canvas>
+            <canvas id="grafico6"></canvas>
+        </div>
+    
+    </div>    
+    <!-- Área dos Scripts (Biblioteca dos gráficos / Arquivo JavaScript) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../paginas_menu_js/relatorios.js"></script> 
+</body>
+
+</html>

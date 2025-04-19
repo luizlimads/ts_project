@@ -6,21 +6,21 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url('./img.webp'); /* caminho da imagem */
+    background-image: url('./img.webp');
     background-size: cover; 
     background-position: center; 
-    background-attachment: fixed;     
+    background-attachment: fixed;
     height: 100vh;
 }
 
-/* NOVO: Botão do menu hambúrguer */
+/* Botão do menu hambúrguer */
 .menu-toggle {
     position: fixed;
     top: 15px;
     left: 250px;
-    width: 200px;              /* largura reduzida */
-    height: 40px;             /* altura proporcional */
-    font-size: 18px;          /* tamanho do ícone */
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
     background-color: #28a745;
     color: white;
     border: none;
@@ -33,10 +33,7 @@ body {
     padding: 0;
 }
 
-
-
-
-/* NOVO: Menu lateral de filtros */
+/* Menu lateral */
 .menu-lateral {
     position: fixed;
     top: 0;
@@ -56,15 +53,29 @@ body {
 }
 
 .menu-lateral input,
-.menu-lateral select {
+.menu-lateral select,
+.menu-lateral button {
     width: 100%;
     margin-bottom: 10px;
-    padding: 6px;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
 }
 
-/* NOVO: Envolve os dois blocos para alinhá-los lado a lado */
+.menu-lateral button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+.menu-lateral button:hover {
+    background-color: #218838;
+}
+
+/* Área comum de containers */
 .container-wrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     gap: 30px;
@@ -72,10 +83,10 @@ body {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 12px;
-    align-items: flex-start;
-    height: calc(100vh - 40px);
+    box-sizing: border-box;
 }
 
+/* Container principal (cadastro d produtos) */
 .container {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
@@ -85,6 +96,7 @@ body {
     margin-right: 5%;
 }
 
+/* container (lista de produtos) */
 .container2 {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
@@ -95,7 +107,7 @@ body {
     overflow-y: auto;
 }
 
-/* Ajustes visuais */
+/* estilos do formulários */
 h1, h2 {
     font-size: 24px;
     margin-bottom: 20px;
@@ -118,7 +130,7 @@ input, select {
 }
 
 button {
-    width: 100%;
+    /*width: 100%; (outra forma de mostrar os botões de edição), mas muda o layout*/ 
     padding: 10px;
     background-color: #28a745;
     color: white;
@@ -140,7 +152,7 @@ p#message {
     color: green;
 }
 
-/* Estilização da tabela */
+/* estilos da tabela */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -163,15 +175,6 @@ td {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-/* Estilização dos botões de ação */
-button.editar, button.excluir {
-    padding: 5px 8px;
-    margin: 2px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 button.editar {
     background-color: #007bff;
     color: white;
@@ -188,4 +191,55 @@ button.editar:hover {
 
 button.excluir:hover {
     background-color: #a71d2a;
+}
+
+
+
+/* Ajuste para relatorios.html */
+.relatorio-texto {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.relatorios-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    gap: 30px;
+}
+
+/* Blocp de graficos */
+.relatorios-graficos {
+    flex: 0 0 70%;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+/* area de graficos */
+#graficos-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Sempre 3 colunas */
+    gap: 50px;
+    width: 100%;
+    max-width: 350px;
+    justify-content: center;
+}
+
+/* cada grafico*/
+#graficos-container canvas {
+    background-color: white;
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
 }

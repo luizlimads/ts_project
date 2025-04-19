@@ -178,6 +178,21 @@ function aplicarFiltros() {
 }
 
 
+function limparFiltros() {
+    document.getElementById('filtroNome').value = "";
+    document.getElementById('filtroCategoria').value = "";
+    document.getElementById('filtroUnidade').value = "";
+    document.getElementById('filtroQtdMin').value = "";
+    document.getElementById('filtroQtdMax').value = "";
+    document.getElementById('filtroValidadeMin').value = "";
+    document.getElementById('filtroValidadeMax').value = "";
+
+    // Recarrega todos os produtos sem filtro
+    carregarProdutos();
+}
+
+
+
 // Carregar produtos ao carregar a página
 document.addEventListener("DOMContentLoaded", carregarProdutos);
 
@@ -238,6 +253,10 @@ function formatarNomeProduto(nome) {
 
 function toggleMenu() {
     document.getElementById("menuLateral").classList.toggle("ativo");
+}
+
+function irPara(pagina) {
+    window.location.href = pagina;
 }
 
     
